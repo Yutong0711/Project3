@@ -35,7 +35,7 @@ public class Read {
 				// Read the file line by line
 				while ((line = br.readLine()) != null) {
 					line = Tools.replaceBlank(line);
-					System.out.println("--> " + line);
+					//System.out.println("--> " + line);
 					Parse.parse(line);
 				}
 
