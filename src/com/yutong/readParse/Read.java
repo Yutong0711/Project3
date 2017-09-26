@@ -41,7 +41,11 @@ public class Read {
 				while ((line = br.readLine()) != null) {
 					line = Tools.replaceBlank(line);
 					//System.out.println("--> " + line);
+<<<<<<< HEAD
 					Parse.parse(line, indivdualList);
+=======
+					Parse.parse(line);
+>>>>>>> 1c072613b3d999821fdc44690dfeb3982cb4acea
 				}
 
 
