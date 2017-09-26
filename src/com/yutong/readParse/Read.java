@@ -1,5 +1,7 @@
 package com.yutong.readParse;
 
+import com.sun.xml.internal.bind.v2.model.core.ID;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,13 +9,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
-
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileSystemView;
 
 
-public class Read {
 
+
+public class Read {
 	public static void openFile() throws IOException {
 		try {
 			JFileChooser jfc = new JFileChooser(FileSystemView
@@ -41,6 +43,16 @@ public class Read {
 					//System.out.println("--> " + line);
 					Parse.parse(line, indivdualList);
 				}
+
+
+				Collections.sort(indivdualList, new Comparator<Indivdual>() {
+                    @Override
+                    public int compare(Indivdual o1, Indivdual o2) {
+                        return o1.getID().compareTo(o2.getID());
+                    }
+
+                });
+
 				// Close the input stream
 				br.close();
 				fis.close();
