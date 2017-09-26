@@ -49,7 +49,7 @@ public class Parse {
 
 
 
-
+        //finish by xudong YU
 		if (arguments.contains("INDI") && LegalTags.checkTags(arguments)) {
 			Indivdual indivdual = new Indivdual();
 			indivdual.ID = tag;
