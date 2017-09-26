@@ -52,7 +52,9 @@ public class Read {
                     }
 
                 });
-
+				/*for (int i = 0; i < indivdualList.size() - 1; ++i) {
+				    System.out.println(indivdualList.get(i).ID);
+                }*/
 				// Close the input stream
 				br.close();
 				fis.close();
