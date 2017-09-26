@@ -42,6 +42,7 @@ public class Read {
 					line = Tools.replaceBlank(line);
 					//System.out.println("--> " + line);
 					Parse.parse(line, indivdualList);
+
 				}
 
 
