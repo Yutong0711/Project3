@@ -46,6 +46,10 @@ public class Parse {
 		arguments = line.substring(tag_indice + 1, line.length());
 
 
+
+
+
+        //finish by xudong YU
 		if (arguments.contains("INDI") && LegalTags.checkTags(arguments)) {
 			Indivdual indivdual = new Indivdual();
 			indivdual.ID = tag;
@@ -55,6 +59,9 @@ public class Parse {
 		} else if (tag.contains("SEX") && LegalTags.checkTags(tag)) {
 			indivduals.get(indivduals.size() - 1).Gender = arguments;
 		} else if (tag.contains("DATE") && LegalTags.checkTags(tag)) {
+		    String[] age = arguments.split(" ");
+		    int age1 = Integer.parseInt(age[age.length - 1]);
+		    indivduals.get(indivduals.size() - 1).Age = 2017 - age1;
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM yyyy");
 			try{
                 Date date = simpleDateFormat.parse(arguments);

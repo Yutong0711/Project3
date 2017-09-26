@@ -1,8 +1,6 @@
 package com.yutong.readParse;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -15,8 +13,20 @@ class Indivdual {
 	boolean Alive;
 	Date Death;
 	List<String> Child = new ArrayList<>();
-	ArrayList<String> Spouse;
+	List<String> Spouse = new ArrayList<>();
+	public Indivdual() {
+		super();
+	}
+	public Indivdual (String ID) {
+		super();
+
+		this.ID = ID;
+	}
+	public String getID () {
+		return ID;
+	}
 }
+
 
 class Family {
 	String ID;
