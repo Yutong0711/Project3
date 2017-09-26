@@ -105,4 +105,97 @@ public class Parse {
 			System.out.println("<-- " + " " + level + " " + "|" + tag + " " + "|" + valid + "|" + " " + arguments);
 		}*/
 	}
+
+	public static void parseFamilies(String line, List<Family> families, List<Indivdual> Indivduals) {
+
+		String level;
+		String tag = "";
+		String valid = " ";
+		String arguments = "";
+		int level_indice = 0;
+		int tag_indice = 0;
+
+		for (int i = 0; i < line.length(); i++) {
+			if (line.charAt(i) == ' ') {
+				level_indice = i;
+				break;
+			}
+		}
+
+		for (int i = level_indice + 1; i < line.length(); i++) {
+
+			if (i == line.length() - 1) {
+				tag_indice = line.length() - 1;
+				break;
+			}
+
+			if (line.charAt(i) == ' ') {
+				tag_indice = i;
+				break;
+			} else {
+				tag_indice = line.length() - 1;
+			}
+
+		}
+		level = line.substring(0, level_indice);
+
+		tag = line.substring(level_indice + 1, tag_indice + 1);
+
+		if (tag.charAt(tag.length() - 1) == ' ') {
+			tag = line.substring(level_indice + 1, tag_indice);
+		}
+		arguments = line.substring(tag_indice + 1, line.length());
+
+
+
+
+		//Chenglin Wu
+		if (arguments.contains("FAM") && LegalTags.checkTags(arguments)) {
+			Family family = new Family();
+			family.ID = tag;
+			families.add(family);
+		}
+		else if (tag.contains("MARR")&& LegalTags.checkTags(tag)) {
+			pre = "MARR";
+		}
+		else if (tag.contains("DATE") && LegalTags.checkTags(tag)) {
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM yyyy");
+			try{
+				Date date = simpleDateFormat.parse(arguments);
+                /*Calendar calendar = Calendar.getInstance();
+                calendar.setTime(date);*/
+				if (pre.equals("MARR")){
+					families.get(families.size() - 1).Married = date;
+				} else if (pre.equals("DIV")) {
+					families.get(families.size() - 1).Divorced = date;
+				}
+			}catch (ParseException ex){
+				System.out.println("Exception " + ex);
+			}
+		}
+		else if (tag.contains("HUSB") && LegalTags.checkTags(tag)) {
+			families.get(families.size() - 1).HusbandID = arguments;
+			for (Indivdual p : Indivduals) {
+				if (p.getID() == arguments) {
+					families.get(families.size() - 1).HusbandName = p.Name;
+				}
+			}
+		}
+		else if (tag.contains("WIFE") && LegalTags.checkTags(tag)) {
+			families.get(families.size() - 1).WifeID = arguments;
+			for (Indivdual p : Indivduals) {
+				if (p.getID() == arguments) {
+					families.get(families.size() - 1).WifeName = p.Name;
+				}
+			}
+		}
+
+		else if (tag.contains("DIV")&& LegalTags.checkTags(tag)) {
+			pre = "DIV";
+		}
+		else if (tag.contains("CHIL") && LegalTags.checkTags(tag)) {
+
+				families.get(families.size() - 1).Children.add(arguments);
+		}
+	}
 }
