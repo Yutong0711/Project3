@@ -1,8 +1,11 @@
 package com.yutong.readParse;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class Parse {
-
-	public static void parse(String line) {
+	private static String pre = "";
+	public static void parse(String line, List<Indivdual> indivduals) {
 
 		String level = "";
 		String tag = "";
@@ -42,23 +45,57 @@ public class Parse {
 		}
 		arguments = line.substring(tag_indice + 1, line.length());
 
+
+		if (arguments.contains("INDI") && LegalTags.checkTags(arguments)) {
+			Indivdual indivdual = new Indivdual();
+			indivdual.ID = tag;
+			indivduals.add(indivdual);
+		} else if (tag.contains("NAME") && LegalTags.checkTags(tag)) {
+			indivduals.get(indivduals.size() - 1).Name = arguments;
+		} else if (tag.contains("SEX") && LegalTags.checkTags(tag)) {
+			indivduals.get(indivduals.size() - 1).Gender = arguments;
+		} else if (tag.contains("DATE") && LegalTags.checkTags(tag)) {
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM yyyy");
+			try{
+                Date date = simpleDateFormat.parse(arguments);
+                /*Calendar calendar = Calendar.getInstance();
+                calendar.setTime(date);*/
+				if (pre.equals("BIRT")){
+					indivduals.get(indivduals.size() - 1).Birthday = date;
+				} else if (pre.equals("Death")) {
+					indivduals.get(indivduals.size() - 1).Death = date;
+				}
+			}catch (ParseException ex){
+				System.out.println("Exception " + ex);
+			}
+		} else if (tag.contains("BIRT")&& LegalTags.checkTags(tag)) {
+			pre = "BIRT";
+		} else if (tag.contains("DEAT")&& LegalTags.checkTags(tag)) {
+			pre = "Death";
+			indivduals.get(indivduals.size() - 1).Alive = false;
+		} else if (tag.contains("FAMC") && LegalTags.checkTags(tag)) {
+			indivduals.get(indivduals.size() - 1).Child.add(arguments);
+		} else if (tag.contains("FAMS") && LegalTags.checkTags(tag)) {
+			indivduals.get(indivduals.size() - 1).Spouse.add(arguments);
+		}
 		// Handle the tags exceptions for INDI and FAM
-		if (arguments.contains("INDI") || arguments.contains("FAM")) {
+		/*f (arguments.contains("INDI") || arguments.contains("FAM")) {
 			if (LegalTags.checkTags(arguments)) {
 				valid = "Y";
+				Indivdual indivdual = new Indivdual();
+
+
 			} else {
 				valid = "N";
 			}
-			System.out.println("<-- " + level + "|" + arguments + "|" + valid
-					+ "|" + tag);
+			System.out.println("<-- " + " " + level + " " + "|" + arguments + " " + "|" + valid + "|" + " " + tag);
 		} else {
 			if (LegalTags.checkTags(tag)) {
 				valid = "Y";
 			} else {
 				valid = "N";
 			}
-			System.out.println("<-- " + level + "|" + tag + "|" + valid + "|"
-					+ arguments);
-		}
+			System.out.println("<-- " + " " + level + " " + "|" + tag + " " + "|" + valid + "|" + " " + arguments);
+		}*/
 	}
 }

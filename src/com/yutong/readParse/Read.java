@@ -6,9 +6,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.*;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileSystemView;
+
 
 public class Read {
 
@@ -33,18 +35,17 @@ public class Read {
 						fis));
 				String line;
 				// Read the file line by line
+				List <Indivdual> indivdualList = new ArrayList<Indivdual>();
 				while ((line = br.readLine()) != null) {
 					line = Tools.replaceBlank(line);
 					//System.out.println("--> " + line);
-					Parse.parse(line);
+					Parse.parse(line, indivdualList);
 				}
-
 				// Close the input stream
 				br.close();
 				fis.close();
 			} else {
-				System.out
-						.println("Caution: This file does not exist or is not a txt file!!!");
+				System.out.println("Caution: This file does not exist or is not a txt file!!!");
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
