@@ -66,7 +66,7 @@ class Indivdual {
 	}
 }
 
-
+//Chenglin Wu
 class Family {
 	String ID;
 	Date Married;
@@ -75,7 +75,17 @@ class Family {
 	String HusbandName;
 	String WifeID;
 	String WifeName;
-	String[] Children;
+	List<String> Children = new ArrayList<>();
+	public Family() {
+		super();
+	}
+	public Family (String ID) {
+		super();
+		this.ID = ID;
+	}
+	public String getID() {
+		return ID;
+	}
 }
 
 public class mainMethod {
