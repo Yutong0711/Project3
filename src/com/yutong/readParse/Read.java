@@ -53,6 +53,7 @@ public class Read {
                     }
 
                 });
+				mainMethod.print_arraylist((ArrayList<Indivdual>) indivdualList);
 				/*for (int i = 0; i < indivdualList.size() - 1; ++i) {
 				    System.out.println(indivdualList.get(i).ID);
                 }*/
