@@ -3,6 +3,26 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+	public static void print_arraylist_family(ArrayList<Family>  tobedisplayed)
+		{
+			
+			String[]columnNames= {"ID","MARRIED","DIVORCED","HUSBAND ID","HUSBAND NAME","WIFE ID","WIFE NAME","CHILDREN"};
+			
+			System.out.format("%5s%5s%5s%30s%10s%5s%2s%5s%5s%10s%5s%13s%5s%5s%3s%10s%5s","|" ,columnNames[0],"|", columnNames[1],"|", columnNames[2],"|",columnNames[3],"|",columnNames[4],"|",columnNames[5],"|",columnNames[6],"|",columnNames[7],"|");
+			System.out.println(" ");
+
+			for(int i=0;i<=135;i++)
+			{	System.out.print("-");}
+			System.out.println(" ");
+		for(int i=0;i<tobedisplayed.size();i++)
+		{    Family obj=tobedisplayed.get(i);
+		System.out.format("%5s%5s%5s%30s%10s%5s%5s%5s%5s%10s%5s%15s%5s%5s%5s%10s%5s","|" ,obj.id,"|", obj.name,"|", obj.gender,"|",obj.age,"|",obj.alive,"|",obj.death,"|",obj.child,"|",obj.spouse,"|");		
+		System.out.println();
+				}
+		
+		for(int i=0;i<=135;i++)
+		{	System.out.print("-");}
+	        }
 public static void print_arraylist(ArrayList<Individual>  tobedisplayed)
 		{
 			
@@ -10,7 +30,9 @@ public static void print_arraylist(ArrayList<Individual>  tobedisplayed)
 			
 			System.out.format("%5s%5s%5s%30s%10s%5s%4s%5s%5s%10s%5s%15s%5s%5s%5s%10s%5s","|" ,columnNames[0],"|", columnNames[1],"|", columnNames[2],"|",columnNames[3],"|",columnNames[4],"|",columnNames[5],"|",columnNames[6],"|",columnNames[7],"|");
 			System.out.println(" ");
-			
+			for(int i=0;i<=135;i++)
+			{	System.out.print("-");}
+			System.out.println(" ");
 		for(int i=0;i<tobedisplayed.size();i++)
 		{    Individual obj=tobedisplayed.get(i);
 		System.out.format("%5s%5s%5s%30s%10s%5s%5s%5s%5s%10s%5s%15s%5s%5s%5s%10s%5s","|" ,obj.id,"|", obj.name,"|", obj.gender,"|",obj.age,"|",obj.alive,"|",obj.death,"|",obj.child,"|",obj.spouse,"|");		
