@@ -38,10 +38,13 @@ public class Read {
 				String line;
 				// Read the file line by line
 				List <Indivdual> indivdualList = new ArrayList<Indivdual>();
+				List<Family> familiesList = new ArrayList<>();
+
 				while ((line = br.readLine()) != null) {
 					line = Tools.replaceBlank(line);
 					//System.out.println("--> " + line);
 					Parse.parse(line, indivdualList);
+					Parse.parseFamilies(line, familiesList, indivdualList);
 
 				}
 
@@ -54,6 +57,7 @@ public class Read {
 
                 });
 				mainMethod.print_arraylist((ArrayList<Indivdual>) indivdualList);
+				mainMethod.print_arraylist_family((ArrayList<Family>) familiesList);
 				/*for (int i = 0; i < indivdualList.size() - 1; ++i) {
 				    System.out.println(indivdualList.get(i).ID);
                 }*/

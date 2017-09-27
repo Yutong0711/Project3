@@ -1,10 +1,10 @@
 package com.yutong.readParse;
+
 import java.util.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 
 
 class Indivdual {
@@ -43,57 +43,62 @@ class Family {
     String WifeID;
     String WifeName;
     List<String> Children = new ArrayList<>();
+
     public Family() {
         super();
     }
-    public Family (String ID) {
+
+    public Family(String ID) {
         super();
         this.ID = ID;
     }
+
     public String getID() {
         return ID;
     }
 }
 
 public class mainMethod {
-    public static void print_arraylist_family(ArrayList<Family>  tobedisplayed)
-    {
+    public static void print_arraylist_family(ArrayList<Family> tobedisplayed) {
 
-        String[] columnNames={"ID","MARRIED","DIVORCED","HUSBAND ID","HUSBAND NAME","WIFE ID","WIFE NAME","CHILDREN"};
+        String[] columnNames = {"ID", "MARRIED", "DIVORCED", "HUSBAND ID", "HUSBAND NAME", "WIFE ID", "WIFE NAME", "CHILDREN"};
 
-        System.out.format("%5s%5s%5s%30s%10s%5s%2s%5s%5s%10s%5s%13s%5s%5s%3s%10s%5s","|",columnNames[0],"|",columnNames[1],"|",columnNames[2],"|",columnNames[3],"|",columnNames[4],"|",columnNames[5],"|",columnNames[6],"|",columnNames[7],"|");
+        System.out.format("%5s%5s%5s%30s%10s%5s%2s%5s%5s%10s%5s%13s%5s%5s%3s%10s%5s", "|", columnNames[0], "|", columnNames[1], "|", columnNames[2], "|", columnNames[3], "|", columnNames[4], "|", columnNames[5], "|", columnNames[6], "|", columnNames[7], "|");
         System.out.println(" ");
 
-        for(int i=0;i<=135;i++)
-        {System.out.print("-");}
+        for (int i = 0; i <= 135; i++) {
+            System.out.print("-");
+        }
         System.out.println(" ");
-        for(int i=0;i<tobedisplayed.size();i++)
-        {Family obj=tobedisplayed.get(i);
-            System.out.format("%5s%5s%5s%30s%10s%5s%5s%5s%5s%10s%5s%15s%5s%5s%5s%10s%5s","|",obj.ID,"|",obj.HusbandName,"|",obj.gender,"|",obj.age,"|",obj.alive,"|",obj.death,"|",obj.child,"|",obj.spouse,"|");
+        for (int i = 0; i < tobedisplayed.size(); i++) {
+            Family obj = tobedisplayed.get(i);
+            System.out.format("%5s%5s%5s%30s%10s%5s%5s%5s%5s%10s%5s%15s%5s%5s%5s%10s%5s", "|", obj.ID, "|", obj.Married, "|", obj.Divorced, "|", obj.HusbandID, "|", obj.HusbandName, "|", obj.WifeID, "|", obj.WifeName, "|", String.valueOf(obj.Children), "|");
             System.out.println();
         }
 
-        for(int i=0;i<=135;i++)
-        {System.out.print("-");}
+        for (int i = 0; i <= 135; i++) {
+            System.out.print("-");
+        }
     }
-    public static void print_arraylist(ArrayList<Indivdual>  tobedisplayed)
-    {
 
-        String[]columnNames={"ID","NAME","GENDER","AGE","ALIVE","DEATH","CHILD","SPOUSE"};
+    public static void print_arraylist(ArrayList<Indivdual> tobedisplayed) {
 
-        System.out.format("%5s%5s%5s%30s%10s%5s%4s%5s%5s%10s%5s%15s%5s%5s%5s%10s%5s","|",columnNames[0],"|",columnNames[1],"|",columnNames[2],"|",columnNames[3],"|",columnNames[4],"|",columnNames[5],"|",columnNames[6],"|",columnNames[7],"|");
+        String[] columnNames = {"ID", "NAME", "GENDER", "AGE", "ALIVE", "DEATH", "CHILD", "SPOUSE"};
+
+        System.out.format("%5s%5s%5s%30s%10s%5s%4s%5s%5s%10s%5s%15s%5s%5s%5s%10s%5s", "|", columnNames[0], "|", columnNames[1], "|", columnNames[2], "|", columnNames[3], "|", columnNames[4], "|", columnNames[5], "|", columnNames[6], "|", columnNames[7], "|");
         System.out.println(" ");
-        for(int i=0;i<=135;i++)
-        {System.out.print("-");}
+        for (int i = 0; i <= 135; i++) {
+            System.out.print("-");
+        }
         System.out.println(" ");
-        for(int i=0;i<tobedisplayed.size();i++)
-        {Indivdual obj=tobedisplayed.get(i);
-            System.out.format("%5s%5s%5s%30s%10s%5s%5s%5s%5s%10s%5s%15s%5s%5s%5s%10s%5s","|",obj.ID,"|",obj.Name,"|",obj.Gender,"|",obj.Age,"|",obj.Alive,"|",obj.Death,"|",obj.Child,"|",obj.Spouse,"|");
+        for (int i = 0; i < tobedisplayed.size(); i++) {
+            Indivdual obj = tobedisplayed.get(i);
+            System.out.format("%5s%5s%5s%30s%10s%5s%5s%5s%5s%10s%5s%15s%5s%5s%5s%10s%5s", "|", obj.ID, "|", obj.Name, "|", obj.Gender, "|", obj.Age, "|", obj.Alive, "|", obj.Death, "|", String.valueOf(obj.Child), "|", String.valueOf(obj.Spouse), "|");
             System.out.println();
         }
 
-        for(int i=0;i<=135;i++)
-        {System.out.print("-");
+        for (int i = 0; i <= 135; i++) {
+            System.out.print("-");
         }
     }
 
