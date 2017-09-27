@@ -71,10 +71,10 @@ class Family {
 	String ID;
 	Date Married;
 	Date Divorced;
-	String HuabandID;
+	String HusbandID;
 	String HusbandName;
-	String WIfeID;
-	String WIfeName;
+	String WifeID;
+	String WifeName;
 	String[] Children;
 }
 
