@@ -47,22 +47,22 @@ public class Read {
 					Parse.parseFamilies(line, familiesList, indivdualList);
 
 				}
-				indivdualList.sort((Indivdual o1, Indivdual o2)->o1.getID().compareTo(o2.getID()));
+				/*indivdualList.sort((Indivdual o1, Indivdual o2)->o1.getID().compareTo(o2.getID()));*/
 
 
-				/*Collections.sort(indivdualList, new Comparator<Indivdual>() {
+				Collections.sort(indivdualList, new Comparator<Indivdual>() {
 					@Override
 					public int compare(Indivdual o1, Indivdual o2) {
 						return o1.getID().compareTo(o2.getID());
 					}
 
-				});*/
+				});
 
 				mainMethod.print_arraylist((ArrayList<Indivdual>) indivdualList);
 				mainMethod.print_arraylist_family((ArrayList<Family>) familiesList);
-				for (int i = 0; i < indivdualList.size() - 1; ++i) {
+				/*for (int i = 0; i < indivdualList.size() - 1; ++i) {
 				    System.out.println(indivdualList.get(i).ID);
-                }
+                }*/
 				// Close the input stream
 				br.close();
 				fis.close();
