@@ -58,8 +58,8 @@ public class Read {
 
 				});
 
-				mainMethod.print_arraylist((ArrayList<Indivdual>) indivdualList);
-				mainMethod.print_arraylist_family((ArrayList<Family>) familiesList);
+				Print.print_arraylist((ArrayList<Indivdual>) indivdualList);
+				Print.print_arraylist_family((ArrayList<Family>) familiesList);
 				/*for (int i = 0; i < indivdualList.size() - 1; ++i) {
 				    System.out.println(indivdualList.get(i).ID);
                 }*/

@@ -176,7 +176,7 @@ public class Parse {
 		else if (tag.contains("HUSB") && LegalTags.checkTags(tag)) {
 			families.get(families.size() - 1).HusbandID = arguments;
 			for (Indivdual p : Indivduals) {
-				if (p.getID() == arguments) {
+				if (p.getID().equals(arguments)) {
 					families.get(families.size() - 1).HusbandName = p.Name;
 				}
 			}
@@ -184,7 +184,7 @@ public class Parse {
 		else if (tag.contains("WIFE") && LegalTags.checkTags(tag)) {
 			families.get(families.size() - 1).WifeID = arguments;
 			for (Indivdual p : Indivduals) {
-				if (p.getID() == arguments) {
+				if (p.getID().equals(arguments)) {
 					families.get(families.size() - 1).WifeName = p.Name;
 				}
 			}
