@@ -194,7 +194,12 @@ public class Parse {
 			pre = "DIV";
 		}
 		else if (tag.contains("CHIL") && LegalTags.checkTags(tag)) {
+<<<<<<< HEAD
 			families.get(families.size() - 1).Children.add(arguments);
+=======
+
+				families.get(families.size() - 1).Children.add(arguments);
+>>>>>>> fb302caa03d97daba506c888c7639816caca2ec2
 		}
 	}
 }
