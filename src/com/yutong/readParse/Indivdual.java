@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-class Indivdual {
+public class Indivdual {
     String ID;
     String Name;
     String Gender;

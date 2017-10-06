@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-class Family {
+public class Family {
     String ID;
     Date Married;
     Date Divorced;

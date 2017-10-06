@@ -70,7 +70,12 @@ public class Parse {
 				if (pre.equals("BIRT")){
 					indivduals.get(indivduals.size() - 1).Birthday = date;
 				} else if (pre.equals("Death")) {
-					indivduals.get(indivduals.size() - 1).Death = date;
+					boolean res = sprint1_Checkout.death_After_Birth(indivduals.get(indivduals.size() - 1).Birthday, date);
+					if (res) {
+						indivduals.get(indivduals.size() - 1).Death = date;
+					} else {
+						System.out.println("invalid Date of Death of " + indivduals.get(indivduals.size() - 1).Name);
+					}
 				}
 			}catch (ParseException ex){
 				System.out.println("Exception " + ex);
@@ -79,6 +84,7 @@ public class Parse {
 			pre = "BIRT";
 		} else if (tag.contains("DEAT")&& LegalTags.checkTags(tag)) {
 			pre = "Death";
+			//Do to checkout Death after birth;
 			indivduals.get(indivduals.size() - 1).Alive = false;
 		} else if (tag.contains("FAMC") && LegalTags.checkTags(tag)) {
 			indivduals.get(indivduals.size() - 1).Child.add(arguments);
@@ -165,7 +171,24 @@ public class Parse {
                 /*Calendar calendar = Calendar.getInstance();
                 calendar.setTime(date);*/
 				if (pre.equals("MARR")){
-					families.get(families.size() - 1).Married = date;
+					Date husband_Date = null;
+					Date wife_Date = null;
+					for(int i = 0; i < Indivduals.size(); ++i) {
+						if(Indivduals.get(i).ID.equals(families.get(families.size() - 1).HusbandID)) {
+							husband_Date = Indivduals.get(i).Birthday;
+							continue;
+						}
+						if(Indivduals.get(i).ID.equals(families.get(families.size() - 1).WifeID)) {
+							wife_Date = Indivduals.get(i).Birthday;
+							continue;
+						}
+					}
+					boolean res = sprint1_Checkout.marriage_After_Birth(husband_Date, wife_Date, date);
+					if (res) {
+						families.get(families.size() - 1).Married = date;
+					} else {
+						System.out.println("Invalid Marriage Data of " + families.get(families.size() - 1).HusbandName + " and " + families.get(families.size() - 1).WifeName);
+					}
 				} else if (pre.equals("DIV")) {
 					families.get(families.size() - 1).Divorced = date;
 				}
@@ -194,12 +217,9 @@ public class Parse {
 			pre = "DIV";
 		}
 		else if (tag.contains("CHIL") && LegalTags.checkTags(tag)) {
-<<<<<<< HEAD
-			families.get(families.size() - 1).Children.add(arguments);
-=======
 
-				families.get(families.size() - 1).Children.add(arguments);
->>>>>>> fb302caa03d97daba506c888c7639816caca2ec2
+			families.get(families.size() - 1).Children.add(arguments);
+
 		}
 	}
 }

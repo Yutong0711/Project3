@@ -19,7 +19,8 @@ public class Print {
                 if (obj.Divorced != null) {
                     System.out.format("%5s%5s%5s%30s%10s%5s%5s%5s%5s%10s%5s%15s%5s%5s%5s%10s%5s", "|",
                             obj.ID, "|",
-                            obj.Married.toString().substring(0,11), "|",
+                            obj.Married == null ? null : obj.Married.toString().substring(0, 11), "|",
+                            //obj.Married.toString().substring(0,11), "|",
                             obj.Divorced.toString().substring(0,11), "|",
                             obj.HusbandID, "|", obj.HusbandName, "|",
                             obj.WifeID, "|",
@@ -28,7 +29,8 @@ public class Print {
                 } else {
                     System.out.format("%5s%5s%5s%30s%10s%5s%5s%5s%5s%10s%5s%15s%5s%5s%5s%10s%5s", "|",
                             obj.ID, "|",
-                            obj.Married.toString().substring(0,11), "|",
+                            obj.Married == null ? null : obj.Married.toString().substring(0, 11), "|",
+                            //obj.Married.toString().substring(0,11), "|",
                             obj.Divorced, "|", obj.HusbandID, "|",
                             obj.HusbandName, "|",
                             obj.WifeID, "|",
