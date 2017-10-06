@@ -70,6 +70,7 @@ public class Parse {
 				if (pre.equals("BIRT")){
 					indivduals.get(indivduals.size() - 1).Birthday = date;
 				} else if (pre.equals("Death")) {
+					// checkout if it is valid of Death Data;
 					boolean res = sprint1_Checkout.death_After_Birth(indivduals.get(indivduals.size() - 1).Birthday, date);
 					if (res) {
 						indivduals.get(indivduals.size() - 1).Death = date;
@@ -171,6 +172,7 @@ public class Parse {
                 /*Calendar calendar = Calendar.getInstance();
                 calendar.setTime(date);*/
 				if (pre.equals("MARR")){
+					//get husband date and wife date
 					Date husband_Date = null;
 					Date wife_Date = null;
 					for(int i = 0; i < Indivduals.size(); ++i) {
@@ -183,6 +185,7 @@ public class Parse {
 							continue;
 						}
 					}
+					//checkout if it valid of Married
 					boolean res = sprint1_Checkout.marriage_After_Birth(husband_Date, wife_Date, date);
 					if (res) {
 						families.get(families.size() - 1).Married = date;
