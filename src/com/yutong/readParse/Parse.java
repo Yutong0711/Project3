@@ -68,11 +68,18 @@ public class Parse {
                 /*Calendar calendar = Calendar.getInstance();
                 calendar.setTime(date);*/
 				if (pre.equals("BIRT")){
-					indivduals.get(indivduals.size() - 1).Birthday = date;
+					//Check if it is valid of Birth date
+					boolean res = sprint1_Checkout.dates_Before_Current_Date(date);
+					if(res){
+						indivduals.get(indivduals.size() - 1).Birthday = date;
+					}else {
+						System.out.println("Invalid Date of Birth of "+indivduals.get(indivduals.size()-1).Name);
+					}
 				} else if (pre.equals("Death")) {
-					// checkout if it is valid of Death Data;
+					// checkout if it is valid of Death Date;
+					boolean res1 = sprint1_Checkout.dates_Before_Current_Date(date);
 					boolean res = sprint1_Checkout.death_After_Birth(indivduals.get(indivduals.size() - 1).Birthday, date);
-					if (res) {
+					if (res && res1) {
 						indivduals.get(indivduals.size() - 1).Death = date;
 					} else {
 						System.out.println("invalid Date of Death of " + indivduals.get(indivduals.size() - 1).Name);
@@ -173,27 +180,34 @@ public class Parse {
                 calendar.setTime(date);*/
 				if (pre.equals("MARR")){
 					//get husband date and wife date
-					Date husband_Date = null;
-					Date wife_Date = null;
+					Date husband_Birthday = null;
+					Date wife_Birthday = null;
 					for(int i = 0; i < Indivduals.size(); ++i) {
 						if(Indivduals.get(i).ID.equals(families.get(families.size() - 1).HusbandID)) {
-							husband_Date = Indivduals.get(i).Birthday;
+							husband_Birthday = Indivduals.get(i).Birthday;
 							continue;
 						}
 						if(Indivduals.get(i).ID.equals(families.get(families.size() - 1).WifeID)) {
-							wife_Date = Indivduals.get(i).Birthday;
+							wife_Birthday = Indivduals.get(i).Birthday;
 							continue;
 						}
 					}
 					//checkout if it valid of Married
-					boolean res = sprint1_Checkout.marriage_After_Birth(husband_Date, wife_Date, date);
-					if (res) {
+					boolean res1 = sprint1_Checkout.dates_Before_Current_Date(date);
+					boolean res_husband_birth = sprint1_Checkout.birth_Before_Marriage(husband_Birthday,date);
+					boolean res_wife_birth = sprint1_Checkout.birth_Before_Marriage(wife_Birthday,date);
+					if (res_husband_birth&&res_wife_birth && res1) {
 						families.get(families.size() - 1).Married = date;
 					} else {
 						System.out.println("Invalid Marriage Data of " + families.get(families.size() - 1).HusbandName + " and " + families.get(families.size() - 1).WifeName);
 					}
 				} else if (pre.equals("DIV")) {
-					families.get(families.size() - 1).Divorced = date;
+					boolean res = sprint1_Checkout.dates_Before_Current_Date(date);
+					if(res){
+					    families.get(families.size() - 1).Divorced = date;
+					}else {
+						System.out.println("Invalid Date of Divorce of "+ families.get(families.size()-1).HusbandName + " and "+families.get(families.size()-1).WifeName);
+					}
 				}
 			}catch (ParseException ex){
 				System.out.println("Exception " + ex);
