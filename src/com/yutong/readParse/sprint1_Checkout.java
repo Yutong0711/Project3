@@ -31,10 +31,17 @@ public class sprint1_Checkout {
 
 
     //do by yutong
-    public boolean dates_Before_Current_Date () {
+    public static boolean dates_Before_Current_Date (Date date) {
+        Date current = new Date();
+        if(date!= null && date.after(current)){
+            return false;
+        }
         return true;
     }
-    public boolean birth_Before_Marriage () {
+    public static boolean birth_Before_Marriage (Date birth, Date marriage) {
+        if(birth!=null && marriage!=null && birth.after(marriage)){
+            return false;
+        }
         return true;
     }
 
