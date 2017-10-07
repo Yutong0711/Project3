@@ -23,6 +23,7 @@ public class YutongTest extends TestCase {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM yyyy");
         Date date = simpleDateFormat.parse(new String("24 SEP 1937"));
         boolean res = com.yutong.readParse.sprint1_Checkout.dates_Before_Current_Date(date);
+        System.out.println("test");
         Assert.assertTrue("Alert: Dates (birth, death, marriage, divorce) should NOT be after the current date!",res==true);
     }
 
