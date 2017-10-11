@@ -202,7 +202,7 @@ public class Parse {
 						System.out.println("Invalid Marriage Data of " + families.get(families.size() - 1).HusbandName + " and " + families.get(families.size() - 1).WifeName);
 					}
 				} 
-        else if (pre.equals("DIV")) {
+        		else if (pre.equals("DIV")) {
 					Date husbanDeath = null;
 					Date wifeDeath = null;
 					for (int i = 0; i < Indivduals.size(); ++i) {
@@ -215,21 +215,21 @@ public class Parse {
 							continue;
 						}
 					}
-          boolean res = sprint1_Checkout.dates_Before_Current_Date(date);
+          			boolean res = sprint1_Checkout.dates_Before_Current_Date(date);
 					boolean res2 = sprint1_Checkout.marrigeBeforeDivorce(families.get(families.size() - 1).Married, families.get(families.size() - 1).Divorced);
 					if (res) {
-            if (res2) {
-						  if (husbanDeath != null) {
-							  if (sprint1_Checkout.divorceBeforeDeath(date, husbanDeath)) {
+            			if (res2) {
+            				if (husbanDeath != null) {
+            					if (sprint1_Checkout.divorceBeforeDeath(date, husbanDeath)) {
 								  families.get(families.size() - 1).Divorced = date;
-							  }
-							  System.out.println("Error! Divorce Date should be before the date of death of husband.");
-						  } else families.get(families.size() - 1).Divorced = date;
-						  if (husbanDeath != null) {
-							  if (sprint1_Checkout.divorceBeforeDeath(date, husbanDeath)) {
-								  families.get(families.size() - 1).Divorced = date;
-								  System.out.println("Error! Divorce Date should be before the date of death of wife.");
-							  }
+            					}
+							  	System.out.println("Error! Divorce Date should be before the date of death of husband.");
+            				} else families.get(families.size() - 1).Divorced = date;
+							if (husbanDeath != null) {
+								if (sprint1_Checkout.divorceBeforeDeath(date, husbanDeath)) {
+									families.get(families.size() - 1).Divorced = date;
+									System.out.println("Error! Divorce Date should be before the date of death of wife.");
+							  	}
 						  } else families.get(families.size() - 1).Divorced = date;
 					  } else System.out.println("Error! Divorce Date should be after Marriage Date.");
 					}else System.out.println("Invalid Date of Divorce of "+ families.get(families.size()-1).HusbandName + " and "+families.get(families.size()-1).WifeName);
