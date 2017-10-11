@@ -6,29 +6,24 @@ import java.util.List;
 public class sprint1_Checkout {
     //do by xudong
     public static boolean death_After_Birth(Date birth, Date death) {
-        if (birth.before(death)) {
-            return true;
-        } else {
-            return false;
-        }
+        return birth.before(death);
     }
     public static boolean marriage_After_Birth(Date husband_Date, Date wife_Date, Date marriage) {
-        if (husband_Date != null && wife_Date != null && husband_Date.before(marriage) && wife_Date.before(marriage)) {
-            return true;
-        } else {
-            return false;
-        }
+        return husband_Date != null && wife_Date != null && husband_Date.before(marriage) && wife_Date.before(marriage);
     }
 
 
     // do by chenglin
-    public boolean marrige_Before_Divorce() {
-        return true;
+    public static boolean marrigeBeforeDivorce (Date marriage, Date Divorce) {
+        if (Divorce != null) {
+            return marriage.before(Divorce);
+        } else return true;
     }
-    public boolean divorce_Before_Death() {
-        return true;
+    public static boolean divorceBeforeDeath (Date divorce, Date death) {
+        if (death != null)
+            return divorce.before(death);
+        else return true;
     }
-
 
     //do by yutong
     public static boolean dates_Before_Current_Date (Date date) {

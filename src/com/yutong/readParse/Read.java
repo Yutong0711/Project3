@@ -37,7 +37,7 @@ public class Read {
 						fis));
 				String line;
 				// Read the file line by line
-				List <Indivdual> indivdualList = new ArrayList<Indivdual>();
+				List <Indivdual> indivdualList = new ArrayList<>();
 				List<Family> familiesList = new ArrayList<>();
 
 				while ((line = br.readLine()) != null) {
