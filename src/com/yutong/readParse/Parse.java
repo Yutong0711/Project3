@@ -4,6 +4,55 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Parse {
+	//done by DISHA SAREEN
+
+	public static boolean validate1(String dateString) {
+		SimpleDateFormat df = new SimpleDateFormat("dd MM yyyy");
+		try {
+			df.parse(dateString);
+			return true;
+		} catch (ParseException e) {
+			return false;
+		}
+	}
+
+	public static boolean isValidDate(String dateString) {
+		if (dateString == null || dateString.length() != "yyyyMMdd".length()) {
+			return false;
+		}
+
+		int date;
+		try {
+			date = Integer.parseInt(dateString);
+		} catch (NumberFormatException e) {
+			return false;
+		}
+
+		int year = date / 10000;
+		int month = (date % 10000) / 100;
+		int day = date % 100;
+
+		// leap years calculation not valid before 1581
+		boolean yearOk = (year >= 1581) && (year <= 2500);
+		boolean monthOk = (month >= 1) && (month <= 12);
+		//boolean dayOk = (day >= 1) && (day <= daysInMonth(year, month));
+
+		return (true);
+	}
+	public static boolean validate(String dateToValidate) {
+
+		String dateFormat = "dd mm yyyy";
+		SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+		sdf.setLenient(false);
+		try {
+			//if not valid, it will throw parseException
+			Date date = sdf.parse(dateToValidate);
+		} catch (ParseException e) {
+			return false;
+		}
+
+		return true;
+	}
 	private static String pre = "";
 	public static void parse(String line, List<Indivdual> indivduals) {
 
@@ -165,19 +214,37 @@ public class Parse {
 
 		//Chenglin Wu
 		if (arguments.contains("FAM") && LegalTags.checkTags(arguments)) {
-			Family family = new Family(tag);
-			//family.ID = tag;
+			Family family = new Family();
+			family.ID = tag;
 			families.add(family);
 		}
 		else if (tag.contains("MARR")&& LegalTags.checkTags(tag)) {
 			pre = "MARR";
 		}
+		//done by DISHA SAREEN
+		else if(tag.contains("DATE")&& LegalTags.checkTags(tag)) {
+
+			String phrase = line;
+			String delims = "[ ]+";
+			String[] tokens = phrase.split(delims);
+			for (int i = 0; i < tokens.length; i++) { //System.out.print(tokens[i]);
+				if (tokens[i].equals("DATE")) {
+					String[] newArray = Arrays.copyOfRange(tokens, i + 1, tokens.length);
+					//System.out.println(newArray[2]);
+					String dateHere = Arrays.toString(newArray);
+					//System.out.println(dateHere);
+					validate(dateHere);
+				}
+
+			}
+		}
+
 		else if (tag.contains("DATE") && LegalTags.checkTags(tag)) {
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM yyyy");
 			try{
 				Date date = simpleDateFormat.parse(arguments);
-                		/*Calendar calendar = Calendar.getInstance();
-                		calendar.setTime(date);*/
+                /*Calendar calendar = Calendar.getInstance();
+                calendar.setTime(date);*/
 				if (pre.equals("MARR")){
 					//get husband date and wife date
 					Date husband_Birthday = null;
@@ -201,36 +268,13 @@ public class Parse {
 					} else {
 						System.out.println("Invalid Marriage Data of " + families.get(families.size() - 1).HusbandName + " and " + families.get(families.size() - 1).WifeName);
 					}
-				} 
-        			else if (pre.equals("DIV")) {
-					Date husbanDeath = null;
-					Date wifeDeath = null;
-					for (int i = 0; i < Indivduals.size(); ++i) {
-						if (Indivduals.get(i).ID.equals(families.get(families.size() - 1).HusbandID)) {
-							husbanDeath = Indivduals.get(i).Death;
-							continue;
-						}
-						if (Indivduals.get(i).ID.equals(families.get(families.size() - 1).WifeID)) {
-							wifeDeath = Indivduals.get(i).Death;
-							continue;
-						}
+				} else if (pre.equals("DIV")) {
+					boolean res = sprint1_Checkout.dates_Before_Current_Date(date);
+					if(res){
+					    families.get(families.size() - 1).Divorced = date;
+					}else {
+						System.out.println("Invalid Date of Divorce of "+ families.get(families.size()-1).HusbandName + " and "+families.get(families.size()-1).WifeName);
 					}
-          				boolean res = sprint1_Checkout.dates_Before_Current_Date(date);
-					boolean res2 = sprint1_Checkout.marrigeBeforeDivorce(families.get(families.size() - 1).Married, families.get(families.size() - 1).Divorced);
-					if (res) {
-            					if (res2) {
-            						if (husbanDeath != null) {
-            							if (sprint1_Checkout.divorceBeforeDeath(date, husbanDeath)) {
-								  families.get(families.size() - 1).Divorced = date;
-            							} else System.out.println("Error! Divorce Date should be before the date of death of husband.");
-            						} else families.get(families.size() - 1).Divorced = date;
-							if (wifeDeath != null) {
-								if (sprint1_Checkout.divorceBeforeDeath(date, wifeDeath)) {
-									families.get(families.size() - 1).Divorced = date;
-								} else System.out.println("Error! Divorce Date should be before the date of death of wife.");
-						  	} else families.get(families.size() - 1).Divorced = date;
-					  	} else System.out.println("Error! Divorce Date should be after Marriage Date.");
-					}else System.out.println("Invalid Date of Divorce of "+ families.get(families.size()-1).HusbandName + " and "+families.get(families.size()-1).WifeName);
 				}
 			}catch (ParseException ex){
 				System.out.println("Exception " + ex);
