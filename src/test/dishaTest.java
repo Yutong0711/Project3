@@ -1,6 +1,6 @@
 package test;
 
-import com.yutong.readParse.Parse;
+import com.yutong.readParse.*;
 import junit.framework.TestCase;
 import org.junit.Assert;
 
@@ -12,7 +12,7 @@ public class dishaTest extends TestCase
 {
     public void test() throws ParseException
     {
-        Parse testobj = new Parse();
+        sprint1_Checkout testobj = new sprint1_Checkout();
         boolean output1=testobj.validate("12 asdfgf 1999");
         assertEquals(false,output1);
         boolean output2=testobj.validate("30 FEB 1995");

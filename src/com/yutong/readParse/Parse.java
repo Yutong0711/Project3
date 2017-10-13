@@ -5,54 +5,6 @@ import java.util.*;
 
 public class Parse {
 	//done by DISHA SAREEN
-
-	public static boolean validate1(String dateString) {
-		SimpleDateFormat df = new SimpleDateFormat("dd MM yyyy");
-		try {
-			df.parse(dateString);
-			return true;
-		} catch (ParseException e) {
-			return false;
-		}
-	}
-
-	public static boolean isValidDate(String dateString) {
-		if (dateString == null || dateString.length() != "yyyyMMdd".length()) {
-			return false;
-		}
-
-		int date;
-		try {
-			date = Integer.parseInt(dateString);
-		} catch (NumberFormatException e) {
-			return false;
-		}
-
-		int year = date / 10000;
-		int month = (date % 10000) / 100;
-		int day = date % 100;
-
-		// leap years calculation not valid before 1581
-		boolean yearOk = (year >= 1581) && (year <= 2500);
-		boolean monthOk = (month >= 1) && (month <= 12);
-		//boolean dayOk = (day >= 1) && (day <= daysInMonth(year, month));
-
-		return (true);
-	}
-	public static boolean validate(String dateToValidate) {
-
-		String dateFormat = "dd mm yyyy";
-		SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
-		sdf.setLenient(false);
-		try {
-			//if not valid, it will throw parseException
-			Date date = sdf.parse(dateToValidate);
-		} catch (ParseException e) {
-			return false;
-		}
-
-		return true;
-	}
 	private static String pre = "";
 	public static void parse(String line, List<Indivdual> indivduals) {
 
@@ -233,7 +185,7 @@ public class Parse {
 					//System.out.println(newArray[2]);
 					String dateHere = Arrays.toString(newArray);
 					//System.out.println(dateHere);
-					validate(dateHere);
+					sprint1_Checkout.validate(dateHere);
 				}
 
 			}
