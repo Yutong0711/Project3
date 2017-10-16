@@ -175,26 +175,22 @@ public class Parse {
                     boolean res = sprint1_Checkout.dates_Before_Current_Date(date);
                     boolean res2 = sprint1_Checkout.marrigeBeforeDivorce(families.get(families.size() - 1).Married, families.get(families.size() - 1).Divorced);
                     if(res){
-                        if (res2) {
-							if (husbandDeath != null) {
-								if (sprint1_Checkout.divorceBeforeDeath(date, husbandDeath)) {
-									divIsValid = true;
-								} else {
-									System.out.println("Error! Divorce Date should be before the date of death of husband.");
-									divIsValid = false;
-								}
-							}
-							if (wifeDeath != null) {
-								if (sprint1_Checkout.divorceBeforeDeath(date, wifeDeath) && divIsValid) {
-									families.get(families.size() - 1).Divorced = date;
-								} else {
-									System.out.println("Error! Divorce Date should be before the date of death of wife.");
-								}
-						  	} else families.get(families.size() - 1).Divorced = date;
-					  	} else System.out.println("Error! Divorce Date should be after Marriage Date.");
-                    }else {
-                        error.add(new String ("Invalid Date of Divorce of "+ families.get(families.size()-1).HusbandName + " and "+families.get(families.size()-1).WifeName));
-                    }
+                    	if (res2) {
+				if (husbandDeath != null) {
+					if (sprint1_Checkout.divorceBeforeDeath(date, husbandDeath)) {
+						divIsValid = true;
+					} else {
+						error.add(new String ("Divorce Date of " + families.get(families.size()-1).HusbandName + " and " + families.get(families.size()-1).WifeName) + "should be before the date of death of " + families.get(families.size()-1).HusbandName + ".");
+						divIsValid = false;
+					}
+				}
+				if (wifeDeath != null) {
+					if (sprint1_Checkout.divorceBeforeDeath(date, wifeDeath) && divIsValid) {
+						families.get(families.size() - 1).Divorced = date;
+					} else error.add(new String ("Divorce Date of " + families.get(families.size()-1).HusbandName + " and " + families.get(families.size()-1).WifeName) + "should be before the date of death of " + families.get(families.size()-1).WifeName + ".");
+				} else families.get(families.size() - 1).Divorced = date;
+			} else error.add(new String ("Divorce Date of " + families.get(families.size()-1).HusbandName + " and " + families.get(families.size()-1).WifeName) + "should be after the date of their marraige date.");
+                    } else error.add(new String ("Invalid Date of Divorce of "+ families.get(families.size()-1).HusbandName + " and "+families.get(families.size()-1).WifeName));
                 }
             }catch (ParseException ex){
                 System.out.println("Exception " + ex);
