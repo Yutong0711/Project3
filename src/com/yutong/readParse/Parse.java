@@ -160,9 +160,38 @@ public class Parse {
                         //System.out.println("Invalid Marriage Data of " + families.get(families.size() - 1).HusbandName + " and " + families.get(families.size() - 1).WifeName);
                     }
                 } else if (pre.equals("DIV")) {
+                    Date husbandDeath = null;
+					Date wifeDeath = null;
+					for (int i = 0; i < Indivduals.size(); ++i) {
+						if (Indivduals.get(i).ID.equals(families.get(families.size() - 1).HusbandID)) {
+							husbandDeath = Indivduals.get(i).Death;
+							continue;
+						}
+						if (Indivduals.get(i).ID.equals(families.get(families.size() - 1).WifeID)) {
+							wifeDeath = Indivduals.get(i).Death;
+							continue;
+						}
+					}
                     boolean res = sprint1_Checkout.dates_Before_Current_Date(date);
+                    boolean res2 = sprint1_Checkout.marrigeBeforeDivorce(families.get(families.size() - 1).Married, families.get(families.size() - 1).Divorced);
                     if(res){
-                        families.get(families.size() - 1).Divorced = date;
+                        if (res2) {
+							if (husbandDeath != null) {
+								if (sprint1_Checkout.divorceBeforeDeath(date, husbandDeath)) {
+									divIsValid = true;
+								} else {
+									System.out.println("Error! Divorce Date should be before the date of death of husband.");
+									divIsValid = false;
+								}
+							}
+							if (wifeDeath != null) {
+								if (sprint1_Checkout.divorceBeforeDeath(date, wifeDeath) && divIsValid) {
+									families.get(families.size() - 1).Divorced = date;
+								} else {
+									System.out.println("Error! Divorce Date should be before the date of death of wife.");
+								}
+						  	} else families.get(families.size() - 1).Divorced = date;
+					  	} else System.out.println("Error! Divorce Date should be after Marriage Date.");
                     }else {
                         error.add(new String ("Invalid Date of Divorce of "+ families.get(families.size()-1).HusbandName + " and "+families.get(families.size()-1).WifeName));
                     }
