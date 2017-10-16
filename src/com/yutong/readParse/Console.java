@@ -23,5 +23,6 @@ public class Console {
         //System.out.println("--> " + line);
         Print.print_arraylist((ArrayList<Indivdual>) indivdualList);
         Print.print_arraylist_family((ArrayList<Family>) familiesList);
+        Print.print_Erroe((ArrayList<String>) error);
     }
 }

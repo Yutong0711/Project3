@@ -96,10 +96,10 @@ public class xuDongTest extends TestCase {
         TestSuite s = new TestSuite();
         s.addTest(new xuDongTest("Deathafterbirth"));
         s.addTest(new xuDongTest("marriage_After_Birth"));
-        s.addTest(new chenglinTest("marrigeBeforeDivorce"));
-        s.addTest(new chenglinTest("divorceBeforeDeath"));
-        s.addTest(new YutongTest("dates_before_current_date"));
-        s.addTest(new YutongTest("birth_before_marriage"));
+        s.addTest(new xuDongTest("marrigeBeforeDivorce"));
+        s.addTest(new xuDongTest("divorceBeforeDeath"));
+        s.addTest(new xuDongTest("dates_before_current_date"));
+        s.addTest(new xuDongTest("birth_before_marriage"));
         return s;
     }
 }
