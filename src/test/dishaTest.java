@@ -18,7 +18,6 @@ public class dishaTest extends TestCase
         boolean output2=testobj.validate("30 FEB 1995");
         assertEquals(false,output2);
 
-
     }
 
 }

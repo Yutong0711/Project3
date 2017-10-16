@@ -39,12 +39,13 @@ public class Read {
 				// Read the file line by line
 				List <Indivdual> indivdualList = new ArrayList<>();
 				List<Family> familiesList = new ArrayList<>();
+				List<String> error = new ArrayList<>();
 
 				while ((line = br.readLine()) != null) {
 					line = Tools.replaceBlank(line);
 					//System.out.println("--> " + line);
-					Parse.parse(line, indivdualList);
-					Parse.parseFamilies(line, familiesList, indivdualList);
+					Parse.parse(line, indivdualList,familiesList,error);
+					//Parse.parseFamilies(line, familiesList, indivdualList);
 
 				}
 				/*indivdualList.sort((Indivdual o1, Indivdual o2)->o1.getID().compareTo(o2.getID()));*/
@@ -60,7 +61,11 @@ public class Read {
 
 				Print.print_arraylist((ArrayList<Indivdual>) indivdualList);
 				Print.print_arraylist_family((ArrayList<Family>) familiesList);
-				/*for (int i = 0; i < indivdualList.size() - 1; ++i) {
+				Print.print_Erroe((ArrayList<String>) error);
+				/*for (int i = 0; i < error.size(); ++i) {
+					System.out.println(error.get(i));
+				}
+				for (int i = 0; i < indivdualList.size() - 1; ++i) {
 				    System.out.println(indivdualList.get(i).ID);
                 }*/
 				// Close the input stream

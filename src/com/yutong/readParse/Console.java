@@ -8,12 +8,13 @@ public class Console {
         // Read the file line by line
         List <Indivdual> indivdualList = new ArrayList<Indivdual>();
         List<Family> familiesList = new ArrayList<>();
+        List<String> error = new ArrayList<>();
         while(true){
             if(!(line = input.nextLine()).equals("quit")){
                 line = Tools.replaceBlank(line);
                 //System.out.println("--> " + line);
-                Parse.parse(line, indivdualList);
-                Parse.parseFamilies(line, familiesList, indivdualList);
+                Parse.parse(line, indivdualList,familiesList,error);
+                //Parse.parseFamilies(line, familiesList, indivdualList);
             }else{
                 break;
             }
