@@ -78,14 +78,14 @@ public class Parse {
                     }
                 } else if (pre.equals("Death")) {
                     // checkout if it is valid of Death Date;
-                    boolean res1 = sprint1_Checkout.dates_Before_Current_Date(date);
-                    boolean res = sprint1_Checkout.death_After_Birth(indivduals.get(indivduals.size() - 1).Birthday, date);
-                    if (res && res1) {
+                    //boolean res1 = sprint1_Checkout.dates_Before_Current_Date(date);
+                    //boolean res = sprint1_Checkout.death_After_Birth(indivduals.get(indivduals.size() - 1).Birthday, date);
+                    //if (res && res1) {
                         indivduals.get(indivduals.size() - 1).Death = date;
-                    } else {
+                    //} else {
                         //System.out.println("invalid Date of Death of " + indivduals.get(indivduals.size() - 1).Name);
-                        error.add(new String ("invalid Date of Death of " + indivduals.get(indivduals.size() - 1).Name));
-                    }
+                    //    error.add(new String ("invalid Date of Death of " + indivduals.get(indivduals.size() - 1).Name));
+                    //}
                 }
             }catch (ParseException ex){
                 System.out.println("Exception " + ex);

@@ -28,8 +28,9 @@ public class xuDongTest extends TestCase {
         String data2 = "26 Sep 1996";*/
         Date date1 = simpleDateFormat.parse(new String("24 SEP 1995"));
         Date date2 = simpleDateFormat.parse(new String("22 FEB 2002"));
-        boolean res = com.yutong.readParse.sprint1_Checkout.death_After_Birth(date1, date2);
-        Assert.assertTrue("it is false", res == true);
+        String name = "name";
+        boolean res = com.yutong.readParse.sprint1_Checkout.death_After_Birth(date1, date2, name);
+        Assert.assertTrue("it is false information of " + name , res == true);
         return;
     }
     //done xudong;
@@ -40,8 +41,13 @@ public class xuDongTest extends TestCase {
         Date date1 = simpleDateFormat.parse(new String("24 SEP 1995"));
         Date date2 = simpleDateFormat.parse(new String("22 FEB 2002"));
         Date date3 = simpleDateFormat.parse(new String("17 SEP 2005"));
-        boolean res = com.yutong.readParse.sprint1_Checkout.marriage_After_Birth(date1, date2, date3);
-        Assert.assertTrue("it is false", res == true);
+        String wife_name = "XXX";
+        String Husband_name = "xxx";
+        String res = com.yutong.readParse.sprint1_Checkout.marriage_After_Birth(date1, date2, date3,Husband_name,wife_name);
+        Assert.assertTrue("it is true", res.equals("00"));
+        Assert.assertTrue("it is false of both", res.equals("11"));
+        Assert.assertTrue("it is false of wife", res.equals("01"));
+        Assert.assertTrue("it is false of husband", res.equals("10"));
     }
     //done by chenlin
     public void marrigeBeforeDivorce () throws ParseException {

@@ -39,12 +39,12 @@ public class Read {
 				// Read the file line by line
 				List <Indivdual> indivdualList = new ArrayList<>();
 				List<Family> familiesList = new ArrayList<>();
-				List<String> error = new ArrayList<>();
+				List<String> errors = new ArrayList<>();
 
 				while ((line = br.readLine()) != null) {
 					line = Tools.replaceBlank(line);
 					//System.out.println("--> " + line);
-					Parse.parse(line, indivdualList,familiesList,error);
+					Parse.parse(line, indivdualList,familiesList,errors);
 					//Parse.parseFamilies(line, familiesList, indivdualList);
 
 				}
@@ -58,10 +58,10 @@ public class Read {
 					}
 
 				});
-
+				errors = sprint1_Checkout.check_List(indivdualList, familiesList);
 				Print.print_arraylist((ArrayList<Indivdual>) indivdualList);
 				Print.print_arraylist_family((ArrayList<Family>) familiesList);
-				Print.print_Erroe((ArrayList<String>) error);
+				Print.print_Erroe((ArrayList<String>) errors);
 				/*for (int i = 0; i < error.size(); ++i) {
 					System.out.println(error.get(i));
 				}
