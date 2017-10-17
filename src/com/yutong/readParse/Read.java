@@ -51,17 +51,17 @@ public class Read {
 				/*indivdualList.sort((Indivdual o1, Indivdual o2)->o1.getID().compareTo(o2.getID()));*/
 
 
-				Collections.sort(indivdualList, new Comparator<Indivdual>() {
-					@Override
-					public int compare(Indivdual o1, Indivdual o2) {
-						return o1.getID().compareTo(o2.getID());
-					}
-
-				});
+//				Collections.sort(indivdualList, new Comparator<Indivdual>() {
+//					@Override
+//					public int compare(Indivdual o1, Indivdual o2) {
+//						return o1.getID().compareTo(o2.getID());
+//					}
+//
+//				});
 				errors = sprint1_Checkout.check_List(indivdualList, familiesList);
-				Print.print_arraylist((ArrayList<Indivdual>) indivdualList);
+				Print.print_arraylist_indivdual((ArrayList<Indivdual>) indivdualList);
 				Print.print_arraylist_family((ArrayList<Family>) familiesList);
-				Print.print_Erroe((ArrayList<String>) errors);
+				Print.print_Error((ArrayList<String>) errors);
 				/*for (int i = 0; i < error.size(); ++i) {
 					System.out.println(error.get(i));
 				}
