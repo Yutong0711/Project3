@@ -1,4 +1,4 @@
-package com.yutong.readParse;
+package important;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -7,10 +7,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileSystemView;
+
+import sprints.Sprint1_Checkout;
+import sprints.Sprint2_Checkout;
 
 public class Read {
 	public static void openFile() throws IOException {
@@ -36,18 +40,23 @@ public class Read {
 				// Read the file line by line
 				List<Indivdual> indivdualList = new ArrayList<Indivdual>();
 				List<Family> familiesList = new ArrayList<Family>();
-				List<String> errors = new ArrayList<String>();
+				HashMap<String, List<String>> errors_sprint1 = new HashMap<String, List<String>>();
+				HashMap<String, List<String>> errors_sprint2 = new HashMap<String, List<String>>();
 
 				while ((line = br.readLine()) != null) {
 					line = Tools.replaceBlank(line);
-					Parse.parse(line, indivdualList, familiesList, errors);
+					Parse.parse(line, indivdualList, familiesList);
 
 				}
-				errors = Sprint1_Checkout.check_List(indivdualList,
+				errors_sprint1 = Sprint1_Checkout.check_List(indivdualList,
+						familiesList);
+				errors_sprint2 = Sprint2_Checkout.check_List(indivdualList,
 						familiesList);
 				Print.print_arraylist_indivdual((ArrayList<Indivdual>) indivdualList);
 				Print.print_arraylist_family((ArrayList<Family>) familiesList);
-				Print.print_Error((ArrayList<String>) errors);
+				// Print.print_Error((ArrayList<String>) errors);
+				Print.print_Error((HashMap<String, List<String>>) errors_sprint1);
+				Print.print_Error((HashMap<String, List<String>>) errors_sprint2);
 				// Close the input stream
 				br.close();
 				fis.close();

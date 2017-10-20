@@ -1,6 +1,9 @@
-package com.yutong.readParse;
+package important;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Print {
 	public static void print_arraylist_family(ArrayList<Family> tobedisplayed) {
@@ -129,9 +132,12 @@ public class Print {
 		System.out.print("\n");
 	}
 
-	public static void print_Error(ArrayList<String> toBeDisplayed) {
-		for (int i = 0; i < toBeDisplayed.size(); ++i) {
-			System.out.println(toBeDisplayed.get(i));
+	public static void print_Error(HashMap<String, List<String>> toBeDisplayed) {
+		for (Map.Entry<String, List<String>> entry : toBeDisplayed.entrySet()) {
+			List<String> list = entry.getValue();
+			for (String row : list) {
+				System.out.println(entry.getKey() + ": " + row);
+			}
 		}
 	}
 }

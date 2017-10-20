@@ -1,4 +1,4 @@
-package com.yutong.readParse;
+package important;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -31,10 +31,9 @@ public class Run {
 	}
 
 	private static void show_on_console_and_outputfile() throws IOException {
-		 oldPrintStream = System.out;
-		 bos = new FileOutputStream("output.txt");
-		 multi = new MultiOutputSteam(new PrintStream(bos),
-				oldPrintStream);
+		oldPrintStream = System.out;
+		bos = new FileOutputStream("output.txt");
+		multi = new MultiOutputSteam(new PrintStream(bos), oldPrintStream);
 		System.setOut(new PrintStream(multi));
 	}
 }
